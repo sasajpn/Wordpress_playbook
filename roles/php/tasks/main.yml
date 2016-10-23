@@ -1,0 +1,19 @@
+---
+- name: Install php
+  yum: name={{ item }} state=latest
+  with_items:
+    - php56
+    - php56-fpm
+    - php56-mysqlnd
+
+- name: Setting php-fpm user for nginx 
+  replace:
+    dest=/etc/php-fpm-5.6.d/www.conf
+    regexp='user = apache'
+    replace='user = nginx'
+
+- name: Setting php-fpm group for nginx 
+  replace:
+    dest=/etc/php-fpm-5.6.d/www.conf
+    regexp='group = apache'
+    replace='group = nginx'

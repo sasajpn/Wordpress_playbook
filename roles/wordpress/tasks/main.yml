@@ -1,0 +1,6 @@
+---
+- name: Download Wordpress
+  get_url: url="https://ja.wordpress.org/wordpress-4.4-ja.tar.gz" dest=/var/www
+
+- name: Unpacking Wordpress
+  command: tar xvzf wordpress-4.4-ja.tar.gz chdir=/var/www

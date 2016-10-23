@@ -1,0 +1,48 @@
+---
+- name: upgrade all packages
+  yum: name=* state=latest
+
+- name: Change language to Japanese
+  lineinfile:
+    dest=/etc/sysconfig/i18n
+    regexp=^LANG=
+    line=LANG=ja_JP.UTF-8
+- name: Set localtime
+  shell: cp /usr/share/zoneinfo/Japan /etc/localtime
+
+- name: For update glibc
+  lineinfile:
+    dest=/etc/sysconfig/clock
+    regexp=^ZONE=
+    line=ZONE='"Asia/Tokyo"'
+
+- name: Not update copied instance
+  lineinfile:
+    dest=/etc/cloud/cloud.cfg
+    regexp='^repo_upgrade{{":"}}'
+    line='repo_upgrade{{":"}} none'
+
+- name: Set locale on copied instance
+  lineinfile:
+    dest=/etc/cloud/cloud.cfg
+    line='locale{{":"}} ja_jp.UTF-8'
+
+- name: Create swapfile
+  command: dd if=/dev/zero of=/swapfile bs={{ bs }} count={{ count }} creates=/swapfile
+
+- name: Register swap
+  command: file /swapfile
+  register: swapfile
+
+- name: Create swap area
+  command: mkswap /swapfile
+  when: swapfile.stdout.find('swap file') == -1
+
+- name: Stand up swap area
+  command: swapon /swapfile
+  when: ansible_swaptotal_mb < 1
+ 
+- name: Using swap area when restart OS
+  lineinfile:
+    dest=/etc/fstab
+    line='/swapfile swap swap defaults 0 0'

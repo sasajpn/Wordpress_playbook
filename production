@@ -1,0 +1,11 @@
+[app]
+app
+
+[web]
+app1.example.com
+
+[db]
+db1.example.com
+
+[all:vars]
+ansible_ssh_user=

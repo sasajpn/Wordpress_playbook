@@ -1,0 +1,11 @@
+---
+- hosts: app
+  sudo: yes
+  roles:
+    - ec2
+    - nginx
+    - mysql
+    - php
+    - wordpress
+    - common
+    

@@ -1,0 +1,7 @@
+user: nginx
+worker_process_num: auto
+worker_connections_num: 2048
+timeout_num: 30
+hash_max_size_num: 2048
+root_path: /var/www
+fastcgi_path: 127.0.0.1:9000

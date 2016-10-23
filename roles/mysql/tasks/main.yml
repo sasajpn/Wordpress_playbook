@@ -1,0 +1,6 @@
+---
+- name: Install mysql
+  yum: name=mysql56-server state=latest
+ 
+- name: Setting my.cnf
+  template: src=default.j2 dest=/etc/my.cnf

@@ -1,0 +1,13 @@
+[client]
+default-character-set=utf8
+
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+#symbolic-links=0
+character-set-server=utf8
+innodb_buffer_pool_size = {{ buffer_pool_size }}
+innodb_log_file_size = {{ log_file_size }}
+
+[mysql]
+default-character-set=utf8
