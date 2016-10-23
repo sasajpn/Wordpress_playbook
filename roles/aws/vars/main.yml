@@ -1,0 +1,18 @@
+---
+keypair:
+  name: "test"
+
+security_group:
+  name: "test"
+  description: "test security group"
+  fromport: "22"
+  toport: "22"
+  destip: "0.0.0.0/0"
+
+ec2:
+  name: "test"
+  image: "test"
+  instance_type: "t2.micro"
+  
+region: ap-northeast-1
+

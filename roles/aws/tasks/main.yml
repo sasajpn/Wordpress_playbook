@@ -1,0 +1,44 @@
+---
+- name: Create keypair
+  ec2_key:
+    name: "{{ keypair.name }}"
+    region: "{{ region }}"
+  register: keypair_register
+
+- name: Create keypair file
+  file:
+    path=~/.ssh/{{ keypair_register.key.name }}.pem
+    state=touch
+    mode=0600
+  when: keypair_register.key.private_key is defined
+
+- name: Writing keypair
+  local_action: shell echo "{{ keypair_register.key.private_key }}" > ~/.ssh/"{{ keypair_register.key.name }}".pem
+  when: keypair_register.key.private_key is defined
+
+- name: Create Security Group
+  ec2_group:
+    name: "{{ security_group.name }}"
+    region: "{{ region }}"
+    description: "{{ security_group.description }}"
+    rules:
+      - proto: tcp
+        from_port: "{{ security_group.fromport }}"
+        to_port: "{{ security_group.toport }}"
+        cidr_ip: "{{ security_group.destip }}"
+
+- name: Create ec2 instance
+  ec2:
+    instance_tags:
+      Name: "{{ ec2.name }}"
+    key_name: "{{ keypair.name }}"
+    instance_type: "{{ ec2.instance_type }}"
+    image: "{{ ec2.image }}"
+    wait: yes
+    group: "{{ security_group.name }}"
+    count: 1
+    region: "{{ region }}"
+  register: ec2_register
+ 
+- debug: var=ec2_register
+  when: ec2_register | success
