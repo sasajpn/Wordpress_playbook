@@ -7,9 +7,9 @@
 
 - name: Create keypair file
   file:
-    path=~/.ssh/{{ keypair_register.key.name }}.pem
-    state=touch
-    mode=0600
+    path: ~/.ssh/{{ keypair_register.key.name }}.pem
+    state: touch
+    mode: 0600
   when: keypair_register.key.private_key is defined
 
 - name: Writing keypair
