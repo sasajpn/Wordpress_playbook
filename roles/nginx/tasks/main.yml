@@ -3,5 +3,9 @@
   yum: name=nginx state=latest
 
 - name: Setting nginx.conf
-  template: src=default.j2 dest=/etc/nginx/nginx.conf
+  template: src={{ conf_temp }} dest=/etc/nginx/nginx.conf
   notify: restart nginx      
+  
+- name: Setting conf.d for unicorn
+  template: src=unicorn.j2 dest=/etc/nginx/conf.d/{{ app.name }}.conf
+  when: "'rails' in group_names"

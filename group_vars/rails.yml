@@ -1,0 +1,18 @@
+# nginx
+conf_temp: default.j2
+
+nginx:
+  user: nginx
+  worker_process_num: auto
+  worker_connections_num: 2048
+  timeout_num: 30
+  hash_max_size_num: 2048
+
+app:
+  name: sample
+  domain: sample
+  ip: sample
+
+service:
+  - nginx
+  - mysqld

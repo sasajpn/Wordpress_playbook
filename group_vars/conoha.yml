@@ -1,0 +1,6 @@
+ssh_port_num: 10234
+  
+mysql:
+  buffer_pool_size: 256M
+  log_file_size: 64M
+

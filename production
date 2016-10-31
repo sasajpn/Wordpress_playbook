@@ -1,14 +1,21 @@
 [localhost]
 127.0.0.1
 
-[app]
-app
+[rails:children]
+conoha
 
-[web]
+[wordpress:children]
+ec2
+
+[conoha]
 app1.example.com
+
+[ec2]
+app2.example.com
 
 [db]
 db1.example.com
 
 [all:vars]
-ansible_ssh_user=
+ansible_ssh_user=root
+

@@ -1,7 +1,17 @@
 ---
-- name: Install mysql
+- name: Install mysql in ec2
   yum: name=mysql56-server state=latest
+  when: "'ec2' in group_names"
+
+- name: Install mysql.rpm in conoha
+  yum: name=http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm state=installed
+  when: "'conoha' in group_names"
+
+- name: Install mysql in conoha
+  yum: name=mysql-community-server state=installed
+  when: "'conoha' in group_names"
  
 - name: Setting my.cnf
   template: src=default.j2 dest=/etc/my.cnf
-  notify: restart mysqld
+  notify: 
+    - restart mysqld

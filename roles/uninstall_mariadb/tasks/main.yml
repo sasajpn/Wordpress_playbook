@@ -1,0 +1,3 @@
+---
+- name: Uninstall mariadb
+  yum: name=mariadb-libs state=removed

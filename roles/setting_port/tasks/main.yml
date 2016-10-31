@@ -1,0 +1,23 @@
+---
+- name: Change SSH Port
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    insertafter: ^#Port
+    line: Port={{ ssh_port_num }}
+  notify: reload sshd
+
+- name: Setting firewalld
+  template: src=default.j2 dest=/etc/firewalld/services/ssh-alt.xml
+  notify: reload firewalld
+
+- name: Add service
+  firewalld: service={{ item }} permanent=true state=enabled immediate=true
+  with_items:
+    - ssh-alt
+    - http
+    - https
+
+- name: Remove default ssh
+  firewalld: service=ssh permanent=true state=disabled immediate=true
+

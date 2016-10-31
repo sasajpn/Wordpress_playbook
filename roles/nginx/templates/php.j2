@@ -33,9 +33,19 @@ http {
   index index.html index.htm index.php;
 
   server {
+    listen      80 default_server;
+    listen      [::]:80 default_server;
+    server_name localhost;
+    root        {{ nginx.root_path }};
+    
     include /etc/nginx/default.d/*.conf;
 
-    location / {
+    location ~ \.php$ {
+      root          {{ nginx.root_path }};
+      fastcgi_pass  {{ nginx.fastcgi_path }};
+      fastcgi_index index.php;
+      fastcgi_param SCRIPT_FILENAME /var/www$fastcgi_script_name;
+      include       fastcgi_params;
     }
   
     error_page 404 /404.html;

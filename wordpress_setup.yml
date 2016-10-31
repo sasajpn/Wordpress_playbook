@@ -2,7 +2,7 @@
 - hosts: app
   sudo: yes
   roles:
-    - ec2
+    - setting_ec2
     - nginx
     - mysql
     - php

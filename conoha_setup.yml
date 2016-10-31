@@ -1,0 +1,8 @@
+---
+- hosts: conoha
+  roles:
+    - setting_port
+    - uninstall_mariadb
+    - mysql
+    - nginx
+    - common

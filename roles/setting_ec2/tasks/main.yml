@@ -28,7 +28,7 @@
     line='locale{{":"}} ja_jp.UTF-8'
 
 - name: Create swapfile
-  command: dd if=/dev/zero of=/swapfile bs={{ bs }} count={{ count }} creates=/swapfile
+  command: dd if=/dev/zero of=/swapfile bs={{ swap.bs }} count={{ swap.count }} creates=/swapfile
 
 - name: Register swap
   command: file /swapfile

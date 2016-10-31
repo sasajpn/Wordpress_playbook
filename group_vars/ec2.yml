@@ -1,0 +1,7 @@
+swap:
+  bs: 1M
+  count: 1024
+
+mysql:
+  buffer_pool_size: 256M
+  log_file_size: 64M
