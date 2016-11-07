@@ -15,8 +15,8 @@ Ansible Playbooks
 ####Setup WordPress - Install nginx and php, mysql then setup WordPress
 
 ##Usage
-####*Setting environment in production
-####*Setting variables in group_vars/
-####*Start ansible-playbook by using below command
+####1.Setting environment in production
+####2.Setting variables in group_vars/
+####3.Start ansible-playbook by using below command
 
 ` ansible-playbook -i production (playbook name) `
