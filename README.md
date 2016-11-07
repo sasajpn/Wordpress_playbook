@@ -17,6 +17,5 @@ Ansible Playbooks
 ##Usage
 ####1.Setting environment in production
 ####2.Setting variables in group_vars/
-####3.Start ansible-playbook by using below command
-
+####3.Start ansible-playbook by using below command  
 `ansible-playbook -i production (playbook name)`
