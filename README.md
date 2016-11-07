@@ -3,10 +3,10 @@ Ansible Playbooks
 
 
 #Overview
-####・Create EC2 Instance
-####・Initial Setting EC2
-####・Initial Setting ConoHa VPS
-####・Setup WordPress
+###・Create EC2 Instance
+###・Initial Setting EC2
+###・Initial Setting ConoHa VPS
+###・Setup WordPress
 
 ##Description
 #####Create EC2 Instance - Create EC2 Instance from local machine
