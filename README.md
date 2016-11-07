@@ -19,4 +19,4 @@ Ansible Playbooks
 ####2.Setting variables in group_vars/
 ####3.Start ansible-playbook by using below command
 
-` ansible-playbook -i production (playbook name) `
+`ansible-playbook -i production (playbook name)`
